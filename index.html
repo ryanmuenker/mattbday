@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Retro Desktop</title>
+  <title>happy bday p</title>
   <link rel="icon" href="images/IMG_8313.jpeg" type="image/x-icon">
   <style>
     
@@ -499,7 +499,6 @@
         viewer.style.width = '400px';
         viewer.style.height = '300px';
         viewer.style.zIndex = ++zIndexCounter;
-        viewer.style.overflow = 'auto';
 
         const titleBar = document.createElement('div');
         titleBar.className = 'title-bar';
@@ -510,11 +509,11 @@
         content.style.padding = '10px';
         content.style.whiteSpace = 'pre-wrap';
         content.style.margin = '0';
-
         viewer.appendChild(titleBar);
         viewer.appendChild(content);
         document.body.appendChild(viewer);
-        makeDraggable(viewer);
+        initializeDraggables();
+
       });
   }
 
@@ -548,9 +547,26 @@
     }
   }
 
+  function initializeDraggables() {
   document.querySelectorAll('.icon, .folder-icon, .window, #audio-player').forEach(el => {
-    makeDraggable(el);
+    if (!el.classList.contains('draggable')) {
+      makeDraggable(el);
+      el.classList.add('draggable');
+    }
   });
+}
+
+initializeDraggables(); // run once on page load
+
+
+  document.addEventListener('mousedown', (e) => {
+  const win = e.target.closest('.window');
+  if (win) {
+    win.style.zIndex = ++zIndexCounter;
+  }
+});
+
+
 </script>
 
 
