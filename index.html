@@ -71,6 +71,7 @@
       text-align: center;
       cursor: move;
       user-select: none;
+      z-index: 1;
     }
 
   .icon:active, .folder-icon:active, .window:active {
@@ -146,7 +147,7 @@
       border: 2px solid black;
       color: yellow;
       font-family: "Arial", sans-serif;
-      z-index: 100;
+      z-index: 10;
       box-shadow: 4px 4px 0 #333;
       cursor: default;
     }
@@ -283,79 +284,75 @@
   <div>SoGoodAtBeingInTrouble.mp3</div>
 </div>
 
-<!-- Audio Player Control -->
-<div id="audio-player">
-  <div class="title-bar">
-    <span>🔊 Audio Player</span>
-  </div>  
-  <div style="padding: 10px;">
-    <input type="text" id="track-name" class="track-input" placeholder="Select track to listen" readonly>
-    <div class="volume-control">
-      <img src="images/685998439ec0c3d1ecd6df7d_Frame 30.svg" alt="Speaker" style="width: 20px; margin-right: 10px;">
-      <input type="range" id="volume-slider" class="slider" min="0" max="1" step="0.01" value="0.8">
-    </div>
-    <div class="controls">
-      <button onclick="playAudio()"><img src="images/684b108ff274ab04de6b4100_Frame 21.svg" alt="Play" style="width: 20px;"></button>
-      <button onclick="pauseAudio()"><img src="images/684b1f963f006f0bb2f8461c_Frame 23.svg" alt="Pause" style="width: 20px;"></button>
-      <button onclick="stopAudio()"><img src="images/684b24427bebfb2ebba14e78_Frame 25.svg" alt="Stop" style="width: 20px;"></button>
-      <div class="timer" id="timer">0:00</div>
-    </div>
-    <audio id="player" src=""></audio>
-  </div>
-</div>
-
-
 <!-- Folder Icon -->
 <div class="folder-icon" style="top: 50px; left: 150px;" onclick="openWindow('misc')">
   <img src="images/6849c43ec145979a248d76be_Icon=Folder, State=Main.svg">
   <div>Misc</div>
 </div>
 
-<!-- Misc Folder Window -->
-<div class="window" id="misc-window" style="top: 100px; left: 100px; width: 600px; height: 360px;">
-  <div class="title-bar">
-    <span>Misc</span>
-    <div>
-      <img src="images/6855ae1b039eae8c0b01bfb9_Minimize.svg" alt="_">
-      <img src="images/6855ae1bd5b91d941de54428_Maximize.svg" alt="[ ]">
-      <img src="images/6855bd93cc3a014a0df5359a_Close.svg" alt="X" onclick="closeWindow('misc')">
+  </div>
+
+  <!-- Move these two out of #desktop -->
+  <!-- Audio Player Control -->
+  <div id="audio-player">
+    <div class="title-bar">
+      <span>🔊 Audio Player</span>
+    </div>  
+    <div style="padding: 10px;">
+      <input type="text" id="track-name" class="track-input" placeholder="Select track to listen" readonly>
+      <div class="volume-control">
+        <img src="images/685998439ec0c3d1ecd6df7d_Frame 30.svg" alt="Speaker" style="width: 20px; margin-right: 10px;">
+        <input type="range" id="volume-slider" class="slider" min="0" max="1" step="0.01" value="0.8">
+      </div>
+      <div class="controls">
+        <button onclick="playAudio()"><img src="images/684b108ff274ab04de6b4100_Frame 21.svg" alt="Play" style="width: 20px;"></button>
+        <button onclick="pauseAudio()"><img src="images/684b1f963f006f0bb2f8461c_Frame 23.svg" alt="Pause" style="width: 20px;"></button>
+        <button onclick="stopAudio()"><img src="images/684b24427bebfb2ebba14e78_Frame 25.svg" alt="Stop" style="width: 20px;"></button>
+        <div class="timer" id="timer">0:00</div>
+      </div>
+      <audio id="player" src=""></audio>
     </div>
   </div>
-  <div class="window-content">
-    <div class="file" onclick="createImageViewer('new_photo1.jpg', 'images/IMG_1374.jpeg')">
-      <img src="images/IMG_1374.jpeg" width="64"><br>
-      last day in sego.jpg
-    </div>
-    
-    <div class="file" onclick="createImageViewer('new_photo2.png', 'images/IMG_5980.jpeg')">
-      <img src="images/IMG_5980.jpeg" width="64"><br>
-      grass.png
-    </div>
-    
-    <div class="file" onclick="createImageViewer('new_photo3.jpg', 'images/IMG_6962.jpeg')">
-      <img src="images/IMG_6962.jpeg" width="64"><br>
-      halloween.jpg
-    </div>
-    
-    <div class="file" onclick="createImageViewer('new_photo4.jpg', 'images/7EFD9562-A3FC-4C45-A451-8F0F9198E9CA.jpeg')">
-      <img src="images/7EFD9562-A3FC-4C45-A451-8F0F9198E9CA.jpeg" width="64"><br>
-      playground.jpg
-    </div>    
 
-    <!-- Video -->
-    <div class="file" onclick="createVideoViewer('images/filtered-FCD0F3A0-0421-4029-B595-CE04E4D761BB.mp4')">
-      <img src="images/video_thumbnail.png" width="64" height="48"><br>
-      classic.mp4
+  <!-- Misc Folder Window -->
+  <div class="window" id="misc-window" style="top: 100px; left: 100px; width: 600px; height: 360px;">
+    <div class="title-bar">
+      <span>Misc</span>
+      <div>
+        <img src="images/6855ae1b039eae8c0b01bfb9_Minimize.svg" alt="_">
+        <img src="images/6855ae1bd5b91d941de54428_Maximize.svg" alt="[ ]">
+        <img src="images/6855bd93cc3a014a0df5359a_Close.svg" alt="X" onclick="closeWindow('misc')">
+      </div>
     </div>
-    
-
-    <!-- Text file -->
-    <div class="file" onclick="openTextFile('README.txt')">
-      <img src="images/6849c43e184329d1de5e2527_Icon=Note, State=Main.svg" width="48"><br>
-      README.txt
+    <div class="window-content">
+      <div class="file" onclick="createImageViewer('new_photo1.jpg', 'images/IMG_1374.jpeg')">
+        <img src="images/IMG_1374.jpeg" width="64"><br>
+        last day in sego.jpg
+      </div>
+      <div class="file" onclick="createImageViewer('new_photo2.png', 'images/IMG_5980.jpeg')">
+        <img src="images/IMG_5980.jpeg" width="64"><br>
+        grass.png
+      </div>
+      <div class="file" onclick="createImageViewer('new_photo3.jpg', 'images/IMG_6962.jpeg')">
+        <img src="images/IMG_6962.jpeg" width="64"><br>
+        halloween.jpg
+      </div>
+      <div class="file" onclick="createImageViewer('new_photo4.jpg', 'images/7EFD9562-A3FC-4C45-A451-8F0F9198E9CA.jpeg')">
+        <img src="images/7EFD9562-A3FC-4C45-A451-8F0F9198E9CA.jpeg" width="64"><br>
+        playground.jpg
+      </div>    
+      <!-- Video -->
+      <div class="file" onclick="createVideoViewer('images/filtered-FCD0F3A0-0421-4029-B595-CE04E4D761BB.mp4')">
+        <img src="images/video_thumbnail.png" width="64" height="48"><br>
+        classic.mp4
+      </div>
+      <!-- Text file -->
+      <div class="file" onclick="openTextFile('README.txt')">
+        <img src="images/6849c43e184329d1de5e2527_Icon=Note, State=Main.svg" width="48"><br>
+        README.txt
+      </div>
     </div>
   </div>
-</div>
 
 
 <script>
@@ -394,11 +391,21 @@
     player.currentTime = 0;
   }
 
+  function getMaxZIndex() {
+    let max = 100;
+    document.querySelectorAll('.window, #audio-player').forEach(el => {
+      const z = parseInt(window.getComputedStyle(el).zIndex) || 0;
+      if (z > max) max = z;
+    });
+    return max;
+  }
+
   function openWindow(name) {
     const win = document.getElementById(`${name}-window`);
     win.classList.add("show");
     win.style.display = 'block';
-    win.style.zIndex = ++zIndexCounter;
+    zIndexCounter = getMaxZIndex() + 1;
+    win.style.zIndex = zIndexCounter;
   }
 
   function closeWindow(name) {
@@ -441,7 +448,8 @@
     viewer.style.top = `${150 + Math.random() * 100}px`;
     viewer.style.left = `${150 + Math.random() * 100}px`;
     viewer.style.maxWidth = '500px';
-    viewer.style.zIndex = ++zIndexCounter;
+    zIndexCounter = getMaxZIndex() + 1;
+    viewer.style.zIndex = zIndexCounter;
 
     const titleBar = document.createElement('div');
     titleBar.className = 'title-bar';
@@ -469,7 +477,8 @@
     viewer.style.left = `${100 + Math.random() * 100}px`;
     viewer.style.width = '480px';
     viewer.style.height = '300px';
-    viewer.style.zIndex = ++zIndexCounter;
+    zIndexCounter = getMaxZIndex() + 1;
+    viewer.style.zIndex = zIndexCounter;
 
     const titleBar = document.createElement('div');
     titleBar.className = 'title-bar';
@@ -498,7 +507,8 @@
         viewer.style.left = `${120 + Math.random() * 100}px`;
         viewer.style.width = '400px';
         viewer.style.height = '300px';
-        viewer.style.zIndex = ++zIndexCounter;
+        zIndexCounter = getMaxZIndex() + 1;
+        viewer.style.zIndex = zIndexCounter;
 
         const titleBar = document.createElement('div');
         titleBar.className = 'title-bar';
@@ -528,7 +538,8 @@
       pos4 = e.clientY;
       document.onmouseup = closeDragElement;
       document.onmousemove = elementDrag;
-      el.style.zIndex = ++zIndexCounter;
+      zIndexCounter = getMaxZIndex() + 1;
+      el.style.zIndex = zIndexCounter;
     }
 
     function elementDrag(e) {
@@ -560,11 +571,18 @@ initializeDraggables(); // run once on page load
 
 
   document.addEventListener('mousedown', (e) => {
-  const win = e.target.closest('.window');
-  if (win) {
-    win.style.zIndex = ++zIndexCounter;
-  }
-});
+    const win = e.target.closest('.window');
+    if (win) {
+      zIndexCounter = getMaxZIndex() + 1;
+      win.style.zIndex = zIndexCounter;
+    }
+    // Bring audio player to front if clicked
+    const audioPlayer = document.getElementById('audio-player');
+    if (audioPlayer && (audioPlayer === e.target || audioPlayer.contains(e.target))) {
+      zIndexCounter = getMaxZIndex() + 1;
+      audioPlayer.style.zIndex = zIndexCounter;
+    }
+  });
 
 
 </script>
